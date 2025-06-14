@@ -1,0 +1,39 @@
+{
+  "name": "solana-event-monitor",
+  "version": "1.0.0",
+  "description": "Monitor events on Solana blockchain for specific contract addresses",
+  "main": "app/index.ts",
+  "scripts": {
+    "start": "npx ts-node app/index.ts",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "type-check": "tsc --noEmit",
+    "test": "ts-node app/test.ts"
+  },
+  "keywords": [
+    "solana",
+    "blockchain",
+    "monitoring",
+    "web3",
+    "anchor",
+    "typescript"
+  ],
+  "author": "Steven Tomi",
+  "license": "MIT",
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@solana/web3.js": "^1.87.6",
+    "@upstash/redis": "^1.35.0",
+    "bs58": "^6.0.0",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/node-cron": "^3.0.11",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
+  }
+}
