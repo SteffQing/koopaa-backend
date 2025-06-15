@@ -1,7 +1,7 @@
-import { Connection, PublicKey, ParsedTransactionWithMeta, ConfirmedSignatureInfo } from "@solana/web3.js";
+import { Connection, ConfirmedSignatureInfo } from "@solana/web3.js";
 import { AnchorProvider } from "@coral-xyz/anchor";
 import { getKoopaProgram, KOOPAA_PROGRAM_ID } from "../app/koopaa";
-import { redis } from "./config";
+import { redis } from "./utils/config";
 
 const connection = new Connection("https://api.devnet.solana.com", "confirmed");
 const provider = new AnchorProvider(connection, {} as any, {});

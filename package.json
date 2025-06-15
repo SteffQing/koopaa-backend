@@ -22,6 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "@coral-xyz/anchor": "^0.31.1",
+    "@neondatabase/serverless": "^1.0.1",
     "@solana/web3.js": "^1.87.6",
     "@upstash/redis": "^1.35.0",
     "bs58": "^6.0.0",

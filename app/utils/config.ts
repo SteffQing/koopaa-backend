@@ -4,7 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 function getEnv(key: string) {
-  return process.env[key];
+  const value = process.env[key];
+  if (value === undefined) {
+    throw new Error(`Environment variable [${key}] is not defined`);
+  }
+  return value;
 }
 
 const redis = new Redis({
