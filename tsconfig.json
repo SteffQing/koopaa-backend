@@ -7,9 +7,10 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "typeRoots": ["./app/types"] // Note: This should be the directory, not a glob pattern
+    "jsx": "preserve",
+    "typeRoots": ["./app/types"]
   },
-  "include": ["app/**/*"],
+  "include": ["app/**/*", "app/email/example-usage.tsx"],
   "ts-node": {
     "files": true // Enable file loading
   }

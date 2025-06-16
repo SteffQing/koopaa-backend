@@ -18,4 +18,8 @@ function formatNumber(bn: BN, decimals: number = 6): number {
   return Number(amount);
 }
 
-export { findAjoGroupPDA, formatNumber };
+function formatAddress(address: string) {
+  return address.slice(0, 7) + "..." + address.slice(-5);
+}
+
+export { findAjoGroupPDA, formatNumber, formatAddress };
