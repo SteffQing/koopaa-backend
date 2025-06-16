@@ -1,10 +1,8 @@
-import { AnchorProvider } from "@coral-xyz/anchor";
-import { Connection, Commitment } from "@solana/web3.js";
-import { getKoopaProgram, KOOPAA_PROGRAM_ID } from "../koopaa";
+import { KOOPAA_PROGRAM_ID } from "../koopaa";
+import { redis } from "../utils/config";
+import { getProgram, connection } from "../utils/provider";
 
-const connection = new Connection("https://api.devnet.solana.com", "confirmed" as Commitment);
-const provider = new AnchorProvider(connection, {} as any, { commitment: "confirmed" });
-const program = getKoopaProgram(provider);
+const program = getProgram();
 
 // 👇 This is the handler you will implement later
 function handleKoopaEvent(eventName: string, eventData: any) {
@@ -12,14 +10,12 @@ function handleKoopaEvent(eventName: string, eventData: any) {
   console.dir(eventData, { depth: null });
 }
 
-async function listenToKoopaEvents() {
+function listenToKoopaEvents() {
   console.log("🟢 Listening for Koopa events...\n");
 
   connection.onLogs(
     KOOPAA_PROGRAM_ID,
     ({ logs }) => {
-      console.log(logs, "all logs");
-
       for (const log of logs) {
         if (!log.startsWith("Program data: ")) continue;
 
@@ -32,7 +28,9 @@ async function listenToKoopaEvents() {
             handleKoopaEvent(decodedEvent.name, decodedEvent.data);
           }
         } catch (err) {
-          // Not an event or decoding failed — skip
+          redis.set("koopa:events:failed", JSON.stringify(err)).then(() => {
+            console.log("Failed to decode event: ", err);
+          });
         }
       }
     },
