@@ -45,7 +45,7 @@ function listenToKoopaEvents() {
 
   connection.onLogs(
     KOOPAA_PROGRAM_ID,
-    ({ logs }) => {
+    async ({ logs }) => {
       for (const log of logs) {
         if (!log.startsWith("Program data: ")) continue;
 
@@ -55,12 +55,11 @@ function listenToKoopaEvents() {
         try {
           const decodedEvent = program.coder.events.decode(rawData.toString());
           if (decodedEvent) {
-            handleKoopaEvent(decodedEvent.name as EventName, decodedEvent.data);
+            await handleKoopaEvent(decodedEvent.name as EventName, decodedEvent.data);
           }
         } catch (err) {
-          redis.set("koopa:events:failed", JSON.stringify(err)).then(() => {
-            console.log("Failed to decode event: ", err);
-          });
+          await redis.set("koopa:events:failed", JSON.stringify(err));
+          console.log("Failed to decode event: ", err);
         }
       }
     },

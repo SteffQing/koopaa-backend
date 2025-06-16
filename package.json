@@ -1,10 +1,10 @@
 {
-  "name": "solana-event-monitor",
+  "name": "koopaa-event-monitor",
   "version": "1.0.0",
-  "description": "Monitor events on Solana blockchain for specific contract addresses",
+  "description": "Monitor events on Solana blockchain for KooPaa contract",
   "main": "app/index.ts",
   "scripts": {
-    "start": "npx ts-node app/index.ts",
+    "app": "ts-node app/index.ts",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "type-check": "tsc --noEmit",
@@ -12,6 +12,7 @@
     "dev": "email dev"
   },
   "keywords": [
+    "koopaa",
     "solana",
     "blockchain",
     "monitoring",
