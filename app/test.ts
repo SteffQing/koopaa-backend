@@ -27,12 +27,13 @@ async function getPayout() {
 }
 
 async function testEmail() {
-  console.log("🚀 Sending test email...");
-  const event = await getPayout();
+  // console.log("🚀 Sending test email...");
+  // const event = await getPayout();
 
-  const email = await sendPayoutMadeEmail("steveola23@gmail.com", event);
+  // const email = await sendPayoutMadeEmail("steveola23@gmail.com", event);
 
-  console.log("✅ Email sent:", email);
+  // console.log("✅ Email sent:", email);
+  await scanPastEvents();
 }
 
 (async () => {

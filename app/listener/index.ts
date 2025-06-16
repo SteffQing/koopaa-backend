@@ -1,28 +1,41 @@
+import sendEmail from "../emails";
 import { KOOPAA_PROGRAM_ID } from "../koopaa";
 import { redis } from "../utils/config";
 import { getProgram, connection } from "../utils/provider";
+import {
+  handleAjoGroupClosedEvent,
+  handleAjoGroupCreatedEvent,
+  handleAjoGroupStartedEvent,
+  handleContributionMadeEvent,
+  handleParticipantJoinedEvent,
+  handlePayoutMadeEvent,
+} from "./event";
 
 const program = getProgram();
 
-// 👇 This is the handler you will implement later
-function handleKoopaEvent(eventName: EventName, eventData: any) {
-  console.log(`📣 Event Triggered: ${eventName}`);
-  console.dir(eventData, { depth: null });
+export async function handleKoopaEvent(eventName: EventName, eventData: OnchainEvent["data"]) {
   switch (eventName) {
     case "payoutMadeEvent":
-      // call notify function
+      await handlePayoutMadeEvent(eventData as PayoutMadeEvent);
       break;
     case "contributionMadeEvent":
+      await handleContributionMadeEvent(eventData as ContributionMadeEvent);
       break;
     case "participantJoinedEvent":
-      // call notify function
+      await handleParticipantJoinedEvent(eventData as ParticipantJoinedEvent);
       break;
     case "ajoGroupCreatedEvent":
-      // call notify function
+      await handleAjoGroupCreatedEvent(eventData as AjoGroupCreatedEvent);
       break;
-
-    default:
-      console.log("Unhandled event: ", eventName);
+    case "ajoGroupClosedEvent":
+      await handleAjoGroupClosedEvent(eventData as AjoGroupClosedEvent);
+      break;
+    case "ajoGroupStartedEvent":
+      await handleAjoGroupStartedEvent(eventData as AjoGroupStartedEvent);
+      break;
+    case "refundClaimedEvent":
+      const participant = (eventData as RefundClaimedEvent).participant.toBase58();
+      await sendEmail(participant, { name: eventName, data: eventData });
       break;
   }
 }

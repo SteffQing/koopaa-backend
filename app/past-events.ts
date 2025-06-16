@@ -1,6 +1,7 @@
 import { Connection, ConfirmedSignatureInfo } from "@solana/web3.js";
 import { AnchorProvider } from "@coral-xyz/anchor";
 import { getKoopaProgram, KOOPAA_PROGRAM_ID } from "../app/koopaa";
+import { handleKoopaEvent } from "./listener";
 
 const connection = new Connection("https://api.devnet.solana.com", "confirmed");
 const provider = new AnchorProvider(connection, {} as any, {});
@@ -42,6 +43,7 @@ async function fetchPastEvents(before?: string) {
         if (event) {
           console.log(`📣 Past Event [${event.name}]:`);
           console.dir(event.data, { depth: null });
+          await handleKoopaEvent(event.name as EventName, event.data);
         }
       } catch {
         console.log("Failed to decode event");

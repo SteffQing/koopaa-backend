@@ -44,7 +44,7 @@ declare global {
 
   type RefundClaimedEvent = {
     groupName: string;
-    participant: Pubkey;
+    participant: PublicKey;
     amount: BN;
   };
 
@@ -56,6 +56,18 @@ declare global {
     | "ajoGroupClosedEvent"
     | "refundClaimedEvent"
     | "ajoGroupStartedEvent";
+
+  type OnchainEvent = {
+    name: EventName;
+    data:
+      | ContributionMadeEvent
+      | AjoGroupCreatedEvent
+      | AjoGroupStartedEvent
+      | ParticipantJoinedEvent
+      | PayoutMadeEvent
+      | AjoGroupClosedEvent
+      | RefundClaimedEvent;
+  };
 }
 
 export {};

@@ -1,3 +1,4 @@
+import sendEmail from "../emails";
 import payout from "../payout";
 import { redis } from "../utils/config";
 
@@ -7,7 +8,10 @@ async function handleContributionMadeEvent(event: ContributionMadeEvent) {
   const groupKey = `group:${groupName}`;
 
   await redis.set(`${groupKey}:participant:${participant}:round`, currentRound);
-  // TODO: Send notification
+  await sendEmail(participant, {
+    name: "contributionMadeEvent",
+    data: event,
+  });
 
   // Check if payout is due
   const participants = await redis.smembers(`${groupKey}:participants`);
@@ -45,7 +49,10 @@ async function handleParticipantJoinedEvent(event: ParticipantJoinedEvent) {
   await redis.sadd(`${groupKey}:participants`, participant);
   await redis.set(`${groupKey}:participant:${participant}:round`, 0);
 
-  // TODO: Send them a notification
+  await sendEmail(participant, {
+    name: "participantJoinedEvent",
+    data: event,
+  });
 }
 
 async function handlePayoutMadeEvent(event: PayoutMadeEvent) {
@@ -57,5 +64,50 @@ async function handlePayoutMadeEvent(event: PayoutMadeEvent) {
     payoutRound,
   });
 
-  // TODO: Send them a notification
+  await sendEmail(participant, {
+    name: "payoutMadeEvent",
+    data: event,
+  });
 }
+
+async function handleAjoGroupClosedEvent(event: AjoGroupClosedEvent) {
+  const { groupName } = event;
+  const groupKey = `group:${groupName}`;
+
+  const participants = await redis.smembers(`${groupKey}:participants`);
+  await Promise.all(
+    participants.map(async (participant) => {
+      await sendEmail(participant, {
+        name: "ajoGroupClosedEvent",
+        data: event,
+      });
+    })
+  );
+
+  await redis.del(groupKey);
+  await redis.del(`${groupKey}:participants`);
+}
+
+async function handleAjoGroupStartedEvent(event: AjoGroupStartedEvent) {
+  const { groupName } = event;
+  const groupKey = `group:${groupName}`;
+
+  const participants = await redis.smembers(`${groupKey}:participants`);
+  await Promise.all(
+    participants.map(async (participant) => {
+      await sendEmail(participant, {
+        name: "ajoGroupStartedEvent",
+        data: event,
+      });
+    })
+  );
+}
+
+export {
+  handleContributionMadeEvent,
+  handleAjoGroupCreatedEvent,
+  handleParticipantJoinedEvent,
+  handlePayoutMadeEvent,
+  handleAjoGroupClosedEvent,
+  handleAjoGroupStartedEvent,
+};

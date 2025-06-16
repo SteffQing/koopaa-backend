@@ -9,7 +9,7 @@ class DB {
 
   public async getUser(address: string) {
     const user = await this.sql`SELECT * FROM public."User" WHERE address = ${address}`;
-    if (user.length === 1) return user[0];
+    if (user.length === 1) return user[0] as User;
     return null;
   }
 }
