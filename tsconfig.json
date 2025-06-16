@@ -6,7 +6,11 @@
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": ["./app/types"] // Note: This should be the directory, not a glob pattern
   },
-  "include": ["app/**/*"]
+  "include": ["app/**/*"],
+  "ts-node": {
+    "files": true // Enable file loading
+  }
 }

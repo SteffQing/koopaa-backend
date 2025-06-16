@@ -2,7 +2,7 @@ import { Connection, ConfirmedSignatureInfo } from "@solana/web3.js";
 import { AnchorProvider } from "@coral-xyz/anchor";
 import { getKoopaProgram, KOOPAA_PROGRAM_ID } from "../app/koopaa";
 import { redis } from "./utils/config";
-import payout from "./listener/payout";
+import payout from "./payout";
 
 const connection = new Connection("https://api.devnet.solana.com", "confirmed");
 const provider = new AnchorProvider(connection, {} as any, {});

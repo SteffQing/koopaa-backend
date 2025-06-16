@@ -1,8 +1,8 @@
 import { PublicKey } from "@solana/web3.js";
-import { findAjoGroupPDA } from "../utils";
-import { USDC, getProgramWithSigner } from "../utils/provider";
+import { findAjoGroupPDA } from "./utils";
+import { USDC, getProgramWithSigner } from "./utils/provider";
 import { getAssociatedTokenAddressSync, TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { KOOPAA_PROGRAM_ID } from "../koopaa";
+import { KOOPAA_PROGRAM_ID } from "./koopaa";
 
 const { program, wallet } = getProgramWithSigner();
 
