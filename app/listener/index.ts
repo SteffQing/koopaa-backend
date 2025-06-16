@@ -5,9 +5,26 @@ import { getProgram, connection } from "../utils/provider";
 const program = getProgram();
 
 // 👇 This is the handler you will implement later
-function handleKoopaEvent(eventName: string, eventData: any) {
+function handleKoopaEvent(eventName: EventName, eventData: any) {
   console.log(`📣 Event Triggered: ${eventName}`);
   console.dir(eventData, { depth: null });
+  switch (eventName) {
+    case "payoutMadeEvent":
+      // call notify function
+      break;
+    case "contributionMadeEvent":
+      break;
+    case "participantJoinedEvent":
+      // call notify function
+      break;
+    case "ajoGroupCreatedEvent":
+      // call notify function
+      break;
+
+    default:
+      console.log("Unhandled event: ", eventName);
+      break;
+  }
 }
 
 function listenToKoopaEvents() {
@@ -25,7 +42,7 @@ function listenToKoopaEvents() {
         try {
           const decodedEvent = program.coder.events.decode(rawData.toString());
           if (decodedEvent) {
-            handleKoopaEvent(decodedEvent.name, decodedEvent.data);
+            handleKoopaEvent(decodedEvent.name as EventName, decodedEvent.data);
           }
         } catch (err) {
           redis.set("koopa:events:failed", JSON.stringify(err)).then(() => {

@@ -44,13 +44,9 @@ async function fetchPastEvents(before?: string) {
         if (event) {
           console.log(`📣 Past Event [${event.name}]:`);
           console.dir(event.data, { depth: null });
-
-          // Optional: Save in Redis
-          //   const key = `koopa:event:${event.name}:${sig.signature}`;
-          //   await redis.set(key, JSON.stringify(event.data));
         }
       } catch {
-        // not a valid Anchor event
+        console.log("Failed to decode event");
       }
     }
   }
@@ -60,8 +56,15 @@ async function fetchPastEvents(before?: string) {
 }
 
 (async () => {
-  await payout("We Win, Together");
-  // console.log("🚀 Scanning past Koopa events...\n");
+  console.log("🚀 Scanning past Koopa events...\n");
+
+  const raw = Buffer.from(
+    "1t7np9AkzV0QAAAAV2UgV2luLCBUb2dldGhlcrv5p2XlVcOpy23Qh1QtOWkhAURcDDYYXJwZsqdjH+FWAIeTAwAAAAABAA==",
+    "base64"
+  );
+  const event = program.coder.events.decode(raw as unknown as string);
+
+  console.log(event);
 
   // let lastSig: string | undefined = undefined;
   // for (let i = 0; i < 3; i++) {
@@ -69,6 +72,6 @@ async function fetchPastEvents(before?: string) {
   //   if (!lastSig) break;
   // }
 
-  // console.log("✅ Done scanning.");
-  // process.exit(0);
+  console.log("✅ Done scanning.");
+  process.exit(0);
 })();
