@@ -35,21 +35,6 @@ export type Koopa = {
           };
         },
         {
-          name: "groupSigner";
-          pda: {
-            seeds: [
-              {
-                kind: "const";
-                value: [103, 114, 111, 117, 112, 45, 118, 97, 117, 108, 116];
-              },
-              {
-                kind: "account";
-                path: "ajoGroup";
-              }
-            ];
-          };
-        },
-        {
           name: "groupTokenVault";
           writable: true;
           pda: {
@@ -408,21 +393,6 @@ export type Koopa = {
           };
         },
         {
-          name: "groupSigner";
-          pda: {
-            seeds: [
-              {
-                kind: "const";
-                value: [103, 114, 111, 117, 112, 45, 118, 97, 117, 108, 116];
-              },
-              {
-                kind: "account";
-                path: "ajoGroup";
-              }
-            ];
-          };
-        },
-        {
           name: "groupTokenVault";
           writable: true;
           pda: {
@@ -476,6 +446,10 @@ export type Koopa = {
     {
       name: "ajoGroupCreatedEvent";
       discriminator: [21, 73, 101, 39, 158, 18, 39, 10];
+    },
+    {
+      name: "ajoGroupStartedEvent";
+      discriminator: [162, 217, 172, 235, 138, 116, 234, 226];
     },
     {
       name: "contributionMadeEvent";
@@ -745,6 +719,22 @@ export type Koopa = {
           {
             name: "payoutInterval";
             type: "u8";
+          }
+        ];
+      };
+    },
+    {
+      name: "ajoGroupStartedEvent";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "groupName";
+            type: "string";
+          },
+          {
+            name: "startTimestamp";
+            type: "i64";
           }
         ];
       };

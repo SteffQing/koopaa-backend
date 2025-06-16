@@ -29,21 +29,6 @@
           }
         },
         {
-          "name": "group_signer",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 114, 111, 117, 112, 45, 118, 97, 117, 108, 116]
-              },
-              {
-                "kind": "account",
-                "path": "ajo_group"
-              }
-            ]
-          }
-        },
-        {
           "name": "group_token_vault",
           "writable": true,
           "pda": {
@@ -402,21 +387,6 @@
           }
         },
         {
-          "name": "group_signer",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 114, 111, 117, 112, 45, 118, 97, 117, 108, 116]
-              },
-              {
-                "kind": "account",
-                "path": "ajo_group"
-              }
-            ]
-          }
-        },
-        {
           "name": "group_token_vault",
           "writable": true,
           "pda": {
@@ -470,6 +440,10 @@
     {
       "name": "AjoGroupCreatedEvent",
       "discriminator": [21, 73, 101, 39, 158, 18, 39, 10]
+    },
+    {
+      "name": "AjoGroupStartedEvent",
+      "discriminator": [162, 217, 172, 235, 138, 116, 234, 226]
     },
     {
       "name": "ContributionMadeEvent",
@@ -739,6 +713,22 @@
           {
             "name": "payout_interval",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AjoGroupStartedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "group_name",
+            "type": "string"
+          },
+          {
+            "name": "start_timestamp",
+            "type": "i64"
           }
         ]
       }
