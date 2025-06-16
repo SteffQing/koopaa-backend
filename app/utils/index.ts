@@ -22,4 +22,16 @@ function formatAddress(address: string) {
   return address.slice(0, 7) + "..." + address.slice(-5);
 }
 
-export { findAjoGroupPDA, formatNumber, formatAddress };
+const formatDate = (dateArg: Date | string): string => {
+  const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "short" });
+  const year = date.getFullYear();
+
+  // Handle special cases 11th, 12th, 13th
+  const suffix = day >= 11 && day <= 13 ? "th" : ["th", "st", "nd", "rd"][day % 10] || "th";
+
+  return `${day}${suffix} ${month}, ${year}`;
+};
+
+export { findAjoGroupPDA, formatNumber, formatAddress, formatDate };

@@ -2,36 +2,38 @@ import { Heading, Text, Section, Row, Column } from "@react-email/components";
 import { EmailLayout } from "./layout";
 import { formatAddress, formatNumber } from "../../utils";
 
-export const PayoutMadeEmail = ({ groupName, recipient, payoutAmount, payoutRound }: PayoutMadeEvent) => (
-  <EmailLayout preview={`Payout made from "${groupName}"`}>
-    <Section style={content}>
-      <Heading style={h1}>🎉 Payout Distributed!</Heading>
+export default function PayoutMadeEmail({ groupName, recipient, payoutAmount, payoutRound }: PayoutMadeEvent) {
+  return (
+    <EmailLayout preview={`Payout made from "${groupName}"`}>
+      <Section style={content}>
+        <Heading style={h1}>🎉 Payout Distributed!</Heading>
 
-      <Text style={text}>Congratulations! A payout has been successfully distributed from your Ajo group.</Text>
+        <Text style={text}>Congratulations! A payout has been successfully distributed from your Ajo group.</Text>
 
-      <Section style={payoutCard}>
-        <Heading style={groupNameStyle}>{groupName}</Heading>
+        <Section style={payoutCard}>
+          <Heading style={groupNameStyle}>{groupName}</Heading>
 
-        <Row>
-          <Column style={statColumn}>
-            <Text style={statLabel}>Recipient</Text>
-            <Text style={statValue}>{formatAddress(recipient.toBase58())}</Text>
-          </Column>
-          <Column style={statColumn}>
-            <Text style={statLabel}>Amount</Text>
-            <Text style={statValue}>{formatNumber(payoutAmount)} USDC</Text>
-          </Column>
-        </Row>
+          <Row>
+            <Column style={statColumn}>
+              <Text style={statLabel}>Recipient</Text>
+              <Text style={statValue}>{formatAddress(recipient.toBase58())}</Text>
+            </Column>
+            <Column style={statColumn}>
+              <Text style={statLabel}>Amount</Text>
+              <Text style={statValue}>{formatNumber(payoutAmount)} USDC</Text>
+            </Column>
+          </Row>
 
-        <Text style={roundText}>Payout Round {payoutRound}</Text>
+          <Text style={roundText}>Payout Round {payoutRound}</Text>
+        </Section>
+
+        <Text style={text}>
+          This is the power of collective savings in action! Keep contributing to maintain the cycle.
+        </Text>
       </Section>
-
-      <Text style={text}>
-        This is the power of collective savings in action! Keep contributing to maintain the cycle.
-      </Text>
-    </Section>
-  </EmailLayout>
-);
+    </EmailLayout>
+  );
+}
 
 const content = {
   padding: "24px",
@@ -96,5 +98,3 @@ const roundText = {
   margin: "16px 0 0",
   textAlign: "center" as const,
 };
-
-export default PayoutMadeEmail;

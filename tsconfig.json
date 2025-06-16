@@ -7,11 +7,15 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "typeRoots": ["./app/types"]
   },
-  "include": ["app/**/*", "app/email/example-usage.tsx"],
+  "include": ["app/**/*", "app/emails/example-usage.tsx"],
   "ts-node": {
-    "files": true // Enable file loading
+    "files": true,
+    "transpileOnly": true,
+    "compilerOptions": {
+      "jsx": "react-jsx"
+    }
   }
 }

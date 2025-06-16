@@ -1,6 +1,6 @@
 import { Heading, Text, Section } from "@react-email/components";
 import { EmailLayout } from "./layout";
-import { formatAddress } from "../../utils";
+import { formatAddress, formatDate, formatNumber } from "../../utils";
 
 export const ParticipantJoinedEmail = ({ groupName, participant, joinTimestamp }: ParticipantJoinedEvent) => (
   <EmailLayout preview={`New participant joined "${groupName}"`}>
@@ -16,7 +16,7 @@ export const ParticipantJoinedEmail = ({ groupName, participant, joinTimestamp }
           <strong>New Participant:</strong> {formatAddress(participant.toBase58())}
         </Text>
 
-        <Text style={timestampText}>Joined: {new Date(joinTimestamp.toNumber() * 1000).toLocaleDateString()}</Text>
+        <Text style={timestampText}>Joined: {formatDate(new Date(formatNumber(joinTimestamp, 0)))}</Text>
       </Section>
 
       <Text style={text}>Your group is growing! The more participants, the stronger your savings circle becomes.</Text>
