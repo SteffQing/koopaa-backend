@@ -13,7 +13,7 @@ export const EmailLayout = ({ preview, children }: EmailLayoutProps) => (
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
-          <Img src="http://www.koopaa.fun/assets/koopaa_logo.png" width="208" height="41" alt="KooPaa" style={logo} />
+          <Img src="https://koopaa.fun/assets/koopaa_logo.png" width="208" height="41" alt="KooPaa" style={logo} />
         </Section>
         {children}
         <Section style={footer}>

@@ -10,7 +10,7 @@ import {
 } from "./templates";
 import { resend } from "../utils/config";
 
-const from = "KooPaa <notifications@updates.algomeme.fun>";
+const from = "KooPaa <notifications@updates.koopaa.fun>";
 
 export async function sendAjoGroupCreatedEmail(to: string, event: AjoGroupCreatedEvent) {
   const text = await render(AjoGroupCreatedEmail({ ...event }), { plainText: true });
