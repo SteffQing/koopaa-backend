@@ -9,7 +9,7 @@
     "prebuild": "npm run clean",
     "type-check": "tsc --noEmit",
     "test": "ts-node app/test.ts",
-    "dev": "email dev"
+    "dev": "email dev --dir app/emails/templates"
   },
   "keywords": [
     "koopaa",

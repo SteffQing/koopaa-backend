@@ -1,4 +1,12 @@
-import { Body, Container, Head, Html, Img, Preview, Section } from "@react-email/components";
+import {
+  Body,
+  Container,
+  Head,
+  Html,
+  Img,
+  Preview,
+  Section,
+} from "@react-email/components";
 import type * as React from "react";
 
 interface EmailLayoutProps {
@@ -7,18 +15,25 @@ interface EmailLayoutProps {
 }
 
 export const EmailLayout = ({ preview, children }: EmailLayoutProps) => (
-  <Html>
+  <Html lang="en" dir="ltr">
     <Head />
     <Preview>{preview}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
-          <Img src="https://koopaa.fun/assets/koopaa_logo.png" width="208" height="41" alt="KooPaa" style={logo} />
+          <Img
+            src="https://koopaa.fun/assets/koopaa_logo.png"
+            width="208"
+            height="41"
+            alt="KooPaa"
+            style={logo}
+          />
         </Section>
         {children}
         <Section style={footer}>
           <p style={footerText}>
-            This email was sent by KooPaa. If you have any questions, please contact our support team.
+            This email was sent by KooPaa. If you have any questions, please
+            contact our support team.
           </p>
         </Section>
       </Container>
@@ -28,7 +43,8 @@ export const EmailLayout = ({ preview, children }: EmailLayoutProps) => (
 
 const main = {
   backgroundColor: "#f6f9fc",
-  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+  fontFamily:
+    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 };
 
 const container = {
