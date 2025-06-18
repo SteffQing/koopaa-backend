@@ -18,7 +18,9 @@ async function handleContributionMadeEvent(event: ContributionMadeEvent) {
   const [participantsRounds, groupData] = await Promise.all([
     Promise.all(
       participants.map(async (participant) => {
-        const round = await redis.get<number>(`${groupKey}:participant:${participant}:round`);
+        const round = await redis.get<number>(
+          `${groupKey}:participant:${participant}:round`
+        );
         return { participant, round: round ? Number(round) : 0 };
       })
     ),
@@ -27,8 +29,11 @@ async function handleContributionMadeEvent(event: ContributionMadeEvent) {
 
   if (!groupData) return;
 
-  const required_contributions_for_payout = (groupData.payoutRound + 1) * groupData.interval;
-  const meets_requirement = participantsRounds.every((p) => p.round >= required_contributions_for_payout);
+  const required_contributions_for_payout =
+    (groupData.payoutRound + 1) * groupData.interval;
+  const meets_requirement = participantsRounds.every(
+    (p) => p.round >= required_contributions_for_payout
+  );
 
   if (meets_requirement) await payout(groupName);
 }

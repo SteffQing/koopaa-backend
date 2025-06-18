@@ -2,8 +2,7 @@ import sendEmail from "../emails";
 import { KOOPAA_PROGRAM_ID } from "../koopaa";
 import { redis } from "../utils/config";
 import { getProgram, connection } from "../utils/provider";
-import
-{
+import {
   handleAjoGroupClosedEvent,
   handleAjoGroupCreatedEvent,
   handleAjoGroupStartedEvent,
@@ -14,8 +13,10 @@ import
 
 const program = getProgram();
 
-export async function handleKoopaEvent(eventName: EventName, eventData: OnchainEvent["data"])
-{
+export async function handleKoopaEvent(
+  eventName: EventName,
+  eventData: OnchainEvent["data"]
+) {
   switch (eventName) {
     case "payoutMadeEvent":
       await handlePayoutMadeEvent(eventData as PayoutMadeEvent);
@@ -36,20 +37,20 @@ export async function handleKoopaEvent(eventName: EventName, eventData: OnchainE
       await handleAjoGroupStartedEvent(eventData as AjoGroupStartedEvent);
       break;
     case "refundClaimedEvent":
-      const participant = (eventData as RefundClaimedEvent).participant.toBase58();
+      const participant = (
+        eventData as RefundClaimedEvent
+      ).participant.toBase58();
       await sendEmail(participant, { name: eventName, data: eventData });
       break;
   }
 }
 
-function listenToKoopaEvents()
-{
+function listenToKoopaEvents() {
   console.log("🟢 Listening for Koopa events...\n");
 
   connection.onLogs(
     KOOPAA_PROGRAM_ID,
-    async ({ logs }) =>
-    {
+    async ({ logs }) => {
       for (const log of logs) {
         if (!log.startsWith("Program data: ")) continue;
 
@@ -57,9 +58,14 @@ function listenToKoopaEvents()
         const rawData = Buffer.from(base64Data, "base64");
 
         try {
-          const decodedEvent = program.coder.events.decode(rawData as unknown as string);
+          const decodedEvent = program.coder.events.decode(
+            rawData as unknown as string
+          );
           if (decodedEvent) {
-            await handleKoopaEvent(decodedEvent.name as EventName, decodedEvent.data);
+            await handleKoopaEvent(
+              decodedEvent.name as EventName,
+              decodedEvent.data
+            );
           }
         } catch (err) {
           await redis.set("koopa:events:failed", JSON.stringify(err));

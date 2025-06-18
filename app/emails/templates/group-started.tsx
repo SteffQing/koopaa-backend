@@ -1,23 +1,30 @@
 import { Heading, Text, Section } from "@react-email/components";
 import { EmailLayout } from "./layout";
 
-export const GroupStartedEmail = ({ groupName, startTimestamp }: AjoGroupStartedEvent) => (
+export const GroupStartedEmail = ({
+  groupName,
+  startTimestamp,
+}: AjoGroupStartedEvent) => (
   <EmailLayout preview={`"${groupName}" has officially started!`}>
     <Section style={content}>
       <Heading style={h1}>🚀 Group Started!</Heading>
 
       <Text style={text}>
-        Exciting news! Your Ajo group has officially started and the savings cycle is now active.
+        Exciting news! Your Ajo group has officially started and the savings
+        cycle is now active.
       </Text>
 
       <Section style={startCard}>
         <Heading style={groupNameStyle}>{groupName}</Heading>
 
-        <Text style={startText}>Started: {new Date(startTimestamp).toLocaleDateString()}</Text>
+        <Text style={startText}>
+          Started: {new Date(startTimestamp).toLocaleDateString()}
+        </Text>
       </Section>
 
       <Text style={text}>
-        The journey begins now! Make sure to contribute on time to keep the cycle running smoothly.
+        The journey begins now! Make sure to contribute on time to keep the
+        cycle running smoothly.
       </Text>
     </Section>
   </EmailLayout>

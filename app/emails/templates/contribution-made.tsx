@@ -12,7 +12,10 @@ export const ContributionMadeEmail = ({
     <Section style={content}>
       <Heading style={h1}>💰 Contribution Received!</Heading>
 
-      <Text style={text}>A contribution has been made to your Ajo group. Keep up the great savings momentum!</Text>
+      <Text style={text}>
+        A contribution has been made to your Ajo group. Keep up the great
+        savings momentum!
+      </Text>
 
       <Section style={contributionCard}>
         <Heading style={groupNameStyle}>{groupName}</Heading>
@@ -20,18 +23,25 @@ export const ContributionMadeEmail = ({
         <Row>
           <Column style={statColumn}>
             <Text style={statLabel}>Contributor</Text>
-            <Text style={statValue}>{formatAddress(contributor.toBase58())}</Text>
+            <Text style={statValue}>
+              {formatAddress(contributor.toBase58())}
+            </Text>
           </Column>
           <Column style={statColumn}>
             <Text style={statLabel}>Amount</Text>
-            <Text style={statValue}>{formatNumber(contributionAmount)} USDC</Text>
+            <Text style={statValue}>
+              {formatNumber(contributionAmount)} USDC
+            </Text>
           </Column>
         </Row>
 
         <Text style={roundText}>Round {currentRound}</Text>
       </Section>
 
-      <Text style={text}>Every contribution brings your group closer to achieving your collective savings goals!</Text>
+      <Text style={text}>
+        Every contribution brings your group closer to achieving your collective
+        savings goals!
+      </Text>
     </Section>
   </EmailLayout>
 );

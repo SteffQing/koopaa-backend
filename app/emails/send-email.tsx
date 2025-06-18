@@ -12,8 +12,13 @@ import { resend } from "../utils/config";
 
 const from = "KooPaa <notifications@updates.koopaa.fun>";
 
-export async function sendAjoGroupCreatedEmail(to: string, event: AjoGroupCreatedEvent) {
-  const text = await render(AjoGroupCreatedEmail({ ...event }), { plainText: true });
+export async function sendAjoGroupCreatedEmail(
+  to: string,
+  event: AjoGroupCreatedEvent
+) {
+  const text = await render(AjoGroupCreatedEmail({ ...event }), {
+    plainText: true,
+  });
 
   return await resend.emails.send({
     from,
@@ -24,8 +29,13 @@ export async function sendAjoGroupCreatedEmail(to: string, event: AjoGroupCreate
   });
 }
 
-export async function sendContributionMadeEmail(to: string, event: ContributionMadeEvent) {
-  const text = await render(ContributionMadeEmail({ ...event }), { plainText: true });
+export async function sendContributionMadeEmail(
+  to: string,
+  event: ContributionMadeEvent
+) {
+  const text = await render(ContributionMadeEmail({ ...event }), {
+    plainText: true,
+  });
 
   return await resend.emails.send({
     from,
@@ -48,8 +58,13 @@ export async function sendPayoutMadeEmail(to: string, event: PayoutMadeEvent) {
   });
 }
 
-export async function sendGroupStartedEmail(to: string, event: AjoGroupStartedEvent) {
-  const text = await render(GroupStartedEmail({ ...event }), { plainText: true });
+export async function sendGroupStartedEmail(
+  to: string,
+  event: AjoGroupStartedEvent
+) {
+  const text = await render(GroupStartedEmail({ ...event }), {
+    plainText: true,
+  });
 
   return await resend.emails.send({
     from,
@@ -60,8 +75,13 @@ export async function sendGroupStartedEmail(to: string, event: AjoGroupStartedEv
   });
 }
 
-export async function sendGroupClosedEmail(to: string, event: AjoGroupClosedEvent) {
-  const text = await render(GroupClosedEmail({ ...event }), { plainText: true });
+export async function sendGroupClosedEmail(
+  to: string,
+  event: AjoGroupClosedEvent
+) {
+  const text = await render(GroupClosedEmail({ ...event }), {
+    plainText: true,
+  });
 
   return await resend.emails.send({
     from,
@@ -72,8 +92,13 @@ export async function sendGroupClosedEmail(to: string, event: AjoGroupClosedEven
   });
 }
 
-export async function sendRefundClaimedEmail(to: string, event: RefundClaimedEvent) {
-  const text = await render(RefundClaimedEmail({ ...event }), { plainText: true });
+export async function sendRefundClaimedEmail(
+  to: string,
+  event: RefundClaimedEvent
+) {
+  const text = await render(RefundClaimedEmail({ ...event }), {
+    plainText: true,
+  });
 
   return await resend.emails.send({
     from,
@@ -84,8 +109,13 @@ export async function sendRefundClaimedEmail(to: string, event: RefundClaimedEve
   });
 }
 
-export async function sendParticipantJoinedEmail(to: string, event: ParticipantJoinedEvent) {
-  const text = await render(ParticipantJoinedEmail({ ...event }), { plainText: true });
+export async function sendParticipantJoinedEmail(
+  to: string,
+  event: ParticipantJoinedEvent
+) {
+  const text = await render(ParticipantJoinedEmail({ ...event }), {
+    plainText: true,
+  });
 
   return await resend.emails.send({
     from,

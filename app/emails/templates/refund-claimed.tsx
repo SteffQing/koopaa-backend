@@ -2,12 +2,18 @@ import { Heading, Text, Section, Row, Column } from "@react-email/components";
 import { EmailLayout } from "./layout";
 import { formatAddress, formatNumber } from "../../utils";
 
-export const RefundClaimedEmail = ({ groupName, amount, participant }: RefundClaimedEvent) => (
+export const RefundClaimedEmail = ({
+  groupName,
+  amount,
+  participant,
+}: RefundClaimedEvent) => (
   <EmailLayout preview={`Refund claimed from "${groupName}"`}>
     <Section style={content}>
       <Heading style={h1}>💸 Refund Claimed</Heading>
 
-      <Text style={text}>A refund has been successfully claimed from your Ajo group.</Text>
+      <Text style={text}>
+        A refund has been successfully claimed from your Ajo group.
+      </Text>
 
       <Section style={refundCard}>
         <Heading style={groupNameStyle}>{groupName}</Heading>
@@ -15,7 +21,9 @@ export const RefundClaimedEmail = ({ groupName, amount, participant }: RefundCla
         <Row>
           <Column style={statColumn}>
             <Text style={statLabel}>Participant</Text>
-            <Text style={statValue}>{formatAddress(participant.toBase58())}</Text>
+            <Text style={statValue}>
+              {formatAddress(participant.toBase58())}
+            </Text>
           </Column>
           <Column style={statColumn}>
             <Text style={statLabel}>Refund Amount</Text>
@@ -24,7 +32,9 @@ export const RefundClaimedEmail = ({ groupName, amount, participant }: RefundCla
         </Row>
       </Section>
 
-      <Text style={text}>The refund has been processed and sent to the participant's wallet.</Text>
+      <Text style={text}>
+        The refund has been processed and sent to the participant's wallet.
+      </Text>
     </Section>
   </EmailLayout>
 );

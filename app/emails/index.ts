@@ -15,11 +15,17 @@ export default async function sendEmail(to: string, event: OnchainEvent) {
 
   switch (event.name) {
     case "ajoGroupCreatedEvent":
-      await sendAjoGroupCreatedEmail(user.email, event.data as AjoGroupCreatedEvent);
+      await sendAjoGroupCreatedEmail(
+        user.email,
+        event.data as AjoGroupCreatedEvent
+      );
       break;
 
     case "contributionMadeEvent":
-      await sendContributionMadeEmail(user.email, event.data as ContributionMadeEvent);
+      await sendContributionMadeEmail(
+        user.email,
+        event.data as ContributionMadeEvent
+      );
       break;
 
     case "payoutMadeEvent":
@@ -27,11 +33,17 @@ export default async function sendEmail(to: string, event: OnchainEvent) {
       break;
 
     case "participantJoinedEvent":
-      await sendParticipantJoinedEmail(user.email, event.data as ParticipantJoinedEvent);
+      await sendParticipantJoinedEmail(
+        user.email,
+        event.data as ParticipantJoinedEvent
+      );
       break;
 
     case "ajoGroupStartedEvent":
-      await sendGroupStartedEmail(user.email, event.data as AjoGroupStartedEvent);
+      await sendGroupStartedEmail(
+        user.email,
+        event.data as AjoGroupStartedEvent
+      );
       break;
 
     case "ajoGroupClosedEvent":
@@ -39,7 +51,10 @@ export default async function sendEmail(to: string, event: OnchainEvent) {
       break;
 
     case "refundClaimedEvent":
-      await sendRefundClaimedEmail(user.email, event.data as RefundClaimedEvent);
+      await sendRefundClaimedEmail(
+        user.email,
+        event.data as RefundClaimedEvent
+      );
       break;
   }
 }

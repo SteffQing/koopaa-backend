@@ -1,13 +1,18 @@
 import { Heading, Text, Section, Row, Column } from "@react-email/components";
 import { EmailLayout } from "./layout";
 
-export const GroupClosedEmail = ({ groupName, groupSize, totalVotes }: AjoGroupClosedEvent) => (
+export const GroupClosedEmail = ({
+  groupName,
+  groupSize,
+  totalVotes,
+}: AjoGroupClosedEvent) => (
   <EmailLayout preview={`"${groupName}" has been closed`}>
     <Section style={content}>
       <Heading style={h1}>📋 Group Closed</Heading>
 
       <Text style={text}>
-        Your Ajo group has been officially closed. Thank you for participating in this savings cycle!
+        Your Ajo group has been officially closed. Thank you for participating
+        in this savings cycle!
       </Text>
 
       <Section style={closedCard}>
@@ -25,7 +30,10 @@ export const GroupClosedEmail = ({ groupName, groupSize, totalVotes }: AjoGroupC
         </Row>
       </Section>
 
-      <Text style={text}>We hope you had a great savings experience. Look out for new groups to join!</Text>
+      <Text style={text}>
+        We hope you had a great savings experience. Look out for new groups to
+        join!
+      </Text>
     </Section>
   </EmailLayout>
 );

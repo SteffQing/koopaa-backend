@@ -1,9 +1,7 @@
-
 import testMail from "./emails/test";
 import fetchPastEvents from "./past-events";
 
-async function scanPastEvents()
-{
+async function scanPastEvents() {
   console.log("🚀 Scanning past Koopa events...\n");
 
   let lastSig: string | undefined = undefined;
@@ -15,10 +13,8 @@ async function scanPastEvents()
   console.log("✅ Done scanning.");
 }
 
-
-(async () =>
-{
+(async () => {
   await testMail("emolasholawilson@gmail.com");
-  await testMail("Svdeeque11@gmail.com")
+  await testMail("Svdeeque11@gmail.com");
   process.exit(0);
 })();

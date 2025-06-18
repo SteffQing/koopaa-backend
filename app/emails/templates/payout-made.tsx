@@ -2,13 +2,21 @@ import { Heading, Text, Section, Row, Column } from "@react-email/components";
 import { EmailLayout } from "./layout";
 import { formatAddress, formatNumber } from "../../utils";
 
-export default function PayoutMadeEmail({ groupName, recipient, payoutAmount, payoutRound }: PayoutMadeEvent) {
+export default function PayoutMadeEmail({
+  groupName,
+  recipient,
+  payoutAmount,
+  payoutRound,
+}: PayoutMadeEvent) {
   return (
     <EmailLayout preview={`Payout made from "${groupName}"`}>
       <Section style={content}>
         <Heading style={h1}>🎉 Payout Distributed!</Heading>
 
-        <Text style={text}>Congratulations! A payout has been successfully distributed from your Ajo group.</Text>
+        <Text style={text}>
+          Congratulations! A payout has been successfully distributed from your
+          Ajo group.
+        </Text>
 
         <Section style={payoutCard}>
           <Heading style={groupNameStyle}>{groupName}</Heading>
@@ -16,7 +24,9 @@ export default function PayoutMadeEmail({ groupName, recipient, payoutAmount, pa
           <Row>
             <Column style={statColumn}>
               <Text style={statLabel}>Recipient</Text>
-              <Text style={statValue}>{formatAddress(recipient.toBase58())}</Text>
+              <Text style={statValue}>
+                {formatAddress(recipient.toBase58())}
+              </Text>
             </Column>
             <Column style={statColumn}>
               <Text style={statLabel}>Amount</Text>
@@ -28,7 +38,8 @@ export default function PayoutMadeEmail({ groupName, recipient, payoutAmount, pa
         </Section>
 
         <Text style={text}>
-          This is the power of collective savings in action! Keep contributing to maintain the cycle.
+          This is the power of collective savings in action! Keep contributing
+          to maintain the cycle.
         </Text>
       </Section>
     </EmailLayout>

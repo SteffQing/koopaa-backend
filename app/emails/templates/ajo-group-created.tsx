@@ -15,7 +15,10 @@ export default function AjoGroupCreatedEmail({
       <Section style={content}>
         <Heading style={h1}>🎉 New Ajo Group Created!</Heading>
 
-        <Text style={text}>Great news! A new Ajo group has been created and is ready for participants to join.</Text>
+        <Text style={text}>
+          Great news! A new Ajo group has been created and is ready for
+          participants to join.
+        </Text>
 
         <Section style={groupCard}>
           <Heading style={groupNameStyle}>{groupName}</Heading>
@@ -23,11 +26,15 @@ export default function AjoGroupCreatedEmail({
           <Row>
             <Column style={statColumn}>
               <Text style={statLabel}>Security Deposit</Text>
-              <Text style={statValue}>{formatNumber(securityDeposit)} USDC</Text>
+              <Text style={statValue}>
+                {formatNumber(securityDeposit)} USDC
+              </Text>
             </Column>
             <Column style={statColumn}>
               <Text style={statLabel}>Contribution Amount</Text>
-              <Text style={statValue}>{formatNumber(contributionAmount)} USDC</Text>
+              <Text style={statValue}>
+                {formatNumber(contributionAmount)} USDC
+              </Text>
             </Column>
           </Row>
 
@@ -50,7 +57,9 @@ export default function AjoGroupCreatedEmail({
           </Row>
         </Section>
 
-        <Text style={text}>Join this group now to start your savings journey with KooPaa!</Text>
+        <Text style={text}>
+          Join this group now to start your savings journey with KooPaa!
+        </Text>
       </Section>
     </EmailLayout>
   );

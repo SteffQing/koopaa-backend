@@ -3,7 +3,10 @@ import { KOOPAA_PROGRAM_ID } from "../koopaa";
 import { BN } from "@coral-xyz/anchor";
 
 const findAjoGroupPDA = (name: string) => {
-  return PublicKey.findProgramAddressSync([Buffer.from("ajo-group"), Buffer.from(name)], KOOPAA_PROGRAM_ID);
+  return PublicKey.findProgramAddressSync(
+    [Buffer.from("ajo-group"), Buffer.from(name)],
+    KOOPAA_PROGRAM_ID
+  );
 };
 
 // use decimals if BN is for token else pass 0: for timestamp values for example
@@ -29,7 +32,8 @@ const formatDate = (dateArg: Date | string): string => {
   const year = date.getFullYear();
 
   // Handle special cases 11th, 12th, 13th
-  const suffix = day >= 11 && day <= 13 ? "th" : ["th", "st", "nd", "rd"][day % 10] || "th";
+  const suffix =
+    day >= 11 && day <= 13 ? "th" : ["th", "st", "nd", "rd"][day % 10] || "th";
 
   return `${day}${suffix} ${month}, ${year}`;
 };

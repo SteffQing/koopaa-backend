@@ -1,7 +1,10 @@
 import { PublicKey } from "@solana/web3.js";
 import { findAjoGroupPDA } from "./utils";
 import { USDC, getProgramWithSigner } from "./utils/provider";
-import { getAssociatedTokenAddressSync, TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import {
+  getAssociatedTokenAddressSync,
+  TOKEN_PROGRAM_ID,
+} from "@solana/spl-token";
 import { KOOPAA_PROGRAM_ID } from "./koopaa";
 
 const { program, wallet } = getProgramWithSigner();
@@ -12,7 +15,10 @@ async function payout(groupName: string) {
   const { payoutRound, participants } = ajoGroup;
   const recipient: AjoParticipant = participants[payoutRound];
 
-  const recipientTokenAccount = getAssociatedTokenAddressSync(USDC, recipient.pubkey);
+  const recipientTokenAccount = getAssociatedTokenAddressSync(
+    USDC,
+    recipient.pubkey
+  );
   const [groupTokenVaultPda] = PublicKey.findProgramAddressSync(
     [Buffer.from("group-vault"), ajoGroupPDA.toBuffer()],
     KOOPAA_PROGRAM_ID

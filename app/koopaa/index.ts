@@ -9,7 +9,9 @@ export type { Koopa };
 export { KoopaIDL };
 
 // The correct program ID
-export const KOOPAA_PROGRAM_ID = new PublicKey("33NAzyKNuayyqKNW6QMXbNT69CikAhCUhPbgwZn1LR3o");
+export const KOOPAA_PROGRAM_ID = new PublicKey(
+  "33NAzyKNuayyqKNW6QMXbNT69CikAhCUhPbgwZn1LR3o"
+);
 
 // This is a helper function to get the Basic Anchor program.
 export function getKoopaProgram(provider: AnchorProvider): Program<Koopa> {

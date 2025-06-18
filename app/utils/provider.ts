@@ -7,10 +7,15 @@ import bs58 from "bs58";
 const USDC = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
 const PRIVATE_KEY = getEnv("PRIVATE_KEY");
 
-const connection = new Connection("https://api.devnet.solana.com", "confirmed" as Commitment);
+const connection = new Connection(
+  "https://api.devnet.solana.com",
+  "confirmed" as Commitment
+);
 
 function getProgram() {
-  const provider = new AnchorProvider(connection, {} as any, { commitment: "confirmed" });
+  const provider = new AnchorProvider(connection, {} as any, {
+    commitment: "confirmed",
+  });
   return getKoopaProgram(provider);
 }
 
@@ -19,7 +24,9 @@ function getProgramWithSigner() {
   const key = Keypair.fromSecretKey(secretKey);
   const wallet = new Wallet(key);
 
-  const provider = new AnchorProvider(connection, wallet, { commitment: "confirmed" });
+  const provider = new AnchorProvider(connection, wallet, {
+    commitment: "confirmed",
+  });
   const program = getKoopaProgram(provider);
   return { program, wallet };
 }

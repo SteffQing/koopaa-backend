@@ -11,14 +11,15 @@ const PROGRAM_ID = KOOPAA_PROGRAM_ID;
 const LIMIT = 1000; // you can increase if needed
 
 async function fetchPastEvents(before?: string) {
-  const signatures: ConfirmedSignatureInfo[] = await connection.getSignaturesForAddress(
-    PROGRAM_ID,
-    {
-      limit: LIMIT,
-      before,
-    },
-    "confirmed"
-  );
+  const signatures: ConfirmedSignatureInfo[] =
+    await connection.getSignaturesForAddress(
+      PROGRAM_ID,
+      {
+        limit: LIMIT,
+        before,
+      },
+      "confirmed"
+    );
 
   console.log(`🔍 Found ${signatures.length} txs`);
 

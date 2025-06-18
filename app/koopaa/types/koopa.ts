@@ -30,7 +30,7 @@ export type Koopa = {
                 kind: "account";
                 path: "ajo_group.name";
                 account: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -46,7 +46,7 @@ export type Koopa = {
               {
                 kind: "account";
                 path: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -65,7 +65,7 @@ export type Koopa = {
         {
           name: "tokenProgram";
           address: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
-        }
+        },
       ];
       args: [];
     },
@@ -86,7 +86,7 @@ export type Koopa = {
                 kind: "account";
                 path: "ajo_group.name";
                 account: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -102,14 +102,14 @@ export type Koopa = {
               {
                 kind: "const";
                 value: [103, 108, 111, 98, 97, 108, 45, 115, 116, 97, 116, 101];
-              }
+              },
             ];
           };
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [];
     },
@@ -130,7 +130,7 @@ export type Koopa = {
                 kind: "account";
                 path: "ajo_group.name";
                 account: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -154,7 +154,7 @@ export type Koopa = {
               {
                 kind: "account";
                 path: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -168,7 +168,7 @@ export type Koopa = {
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [];
     },
@@ -188,7 +188,7 @@ export type Koopa = {
               {
                 kind: "arg";
                 path: "name";
-              }
+              },
             ];
           };
         },
@@ -205,7 +205,7 @@ export type Koopa = {
               {
                 kind: "const";
                 value: [103, 108, 111, 98, 97, 108, 45, 115, 116, 97, 116, 101];
-              }
+              },
             ];
           };
         },
@@ -228,7 +228,7 @@ export type Koopa = {
               {
                 kind: "account";
                 path: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -243,7 +243,7 @@ export type Koopa = {
         {
           name: "rent";
           address: "SysvarRent111111111111111111111111111111111";
-        }
+        },
       ];
       args: [
         {
@@ -269,7 +269,7 @@ export type Koopa = {
         {
           name: "numParticipants";
           type: "u8";
-        }
+        },
       ];
     },
     {
@@ -284,7 +284,7 @@ export type Koopa = {
               {
                 kind: "const";
                 value: [103, 108, 111, 98, 97, 108, 45, 115, 116, 97, 116, 101];
-              }
+              },
             ];
           };
         },
@@ -296,7 +296,7 @@ export type Koopa = {
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [];
     },
@@ -317,7 +317,7 @@ export type Koopa = {
                 kind: "account";
                 path: "ajo_group.name";
                 account: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -333,7 +333,7 @@ export type Koopa = {
               {
                 kind: "const";
                 value: [103, 108, 111, 98, 97, 108, 45, 115, 116, 97, 116, 101];
-              }
+              },
             ];
           };
         },
@@ -356,7 +356,7 @@ export type Koopa = {
               {
                 kind: "account";
                 path: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -367,7 +367,7 @@ export type Koopa = {
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        }
+        },
       ];
       args: [];
     },
@@ -388,7 +388,7 @@ export type Koopa = {
                 kind: "account";
                 path: "ajo_group.name";
                 account: "ajoGroup";
-              }
+              },
             ];
           };
         },
@@ -404,13 +404,15 @@ export type Koopa = {
               {
                 kind: "account";
                 path: "ajoGroup";
-              }
+              },
             ];
           };
         },
         {
           name: "recipient";
-          docs: ["The recipient who will receive tokens (does NOT have to sign)"];
+          docs: [
+            "The recipient who will receive tokens (does NOT have to sign)",
+          ];
           writable: true;
         },
         {
@@ -423,10 +425,10 @@ export type Koopa = {
         {
           name: "tokenProgram";
           address: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
-        }
+        },
       ];
       args: [];
-    }
+    },
   ];
   accounts: [
     {
@@ -436,7 +438,7 @@ export type Koopa = {
     {
       name: "globalState";
       discriminator: [163, 46, 74, 168, 216, 123, 133, 98];
-    }
+    },
   ];
   events: [
     {
@@ -466,7 +468,7 @@ export type Koopa = {
     {
       name: "refundClaimedEvent";
       discriminator: [77, 83, 172, 123, 235, 58, 154, 233];
-    }
+    },
   ];
   errors: [
     {
@@ -598,7 +600,7 @@ export type Koopa = {
       code: 6025;
       name: "noRefundToClaim";
       msg: "No refunds is available for you to claim on this group";
-    }
+    },
   ];
   types: [
     {
@@ -667,7 +669,7 @@ export type Koopa = {
           {
             name: "bumps";
             type: "u8";
-          }
+          },
         ];
       };
     },
@@ -687,7 +689,7 @@ export type Koopa = {
           {
             name: "groupSize";
             type: "u8";
-          }
+          },
         ];
       };
     },
@@ -719,7 +721,7 @@ export type Koopa = {
           {
             name: "payoutInterval";
             type: "u8";
-          }
+          },
         ];
       };
     },
@@ -735,7 +737,7 @@ export type Koopa = {
           {
             name: "startTimestamp";
             type: "i64";
-          }
+          },
         ];
       };
     },
@@ -755,7 +757,7 @@ export type Koopa = {
           {
             name: "refundAmount";
             type: "u64";
-          }
+          },
         ];
       };
     },
@@ -779,7 +781,7 @@ export type Koopa = {
           {
             name: "currentRound";
             type: "u16";
-          }
+          },
         ];
       };
     },
@@ -799,7 +801,7 @@ export type Koopa = {
           {
             name: "bumps";
             type: "u8";
-          }
+          },
         ];
       };
     },
@@ -819,7 +821,7 @@ export type Koopa = {
           {
             name: "joinTimestamp";
             type: "i64";
-          }
+          },
         ];
       };
     },
@@ -843,7 +845,7 @@ export type Koopa = {
           {
             name: "payoutRound";
             type: "u16";
-          }
+          },
         ];
       };
     },
@@ -863,9 +865,9 @@ export type Koopa = {
           {
             name: "amount";
             type: "u64";
-          }
+          },
         ];
       };
-    }
+    },
   ];
 };
