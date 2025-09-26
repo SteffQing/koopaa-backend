@@ -43,7 +43,7 @@ async function fetchPastEvents(before?: string) {
 
         if (event) {
           console.log(`📣 Past Event [${event.name}]:`);
-          console.dir(event.data, { depth: null });
+          // console.dir(event.data, { depth: null });
           await handleKoopaEvent(event.name as EventName, event.data);
         }
       } catch {

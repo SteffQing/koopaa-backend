@@ -11,7 +11,6 @@ declare global {
 
   type AjoGroupCreatedEvent = {
     groupName: string;
-    securityDeposit: BN;
     contributionAmount: BN;
     numParticipants: number;
     contributionInterval: number;
@@ -27,6 +26,17 @@ declare global {
     groupName: string;
     participant: PublicKey;
     joinTimestamp: BN;
+    adminInvited: bool;
+  };
+
+  type JoinRequestRejectedEvent = {
+    groupName: string;
+    participant: PublicKey;
+  };
+
+  type ParticipantInWaitingRoomEvent = {
+    groupName: string;
+    participant: PublicKey;
   };
 
   type PayoutMadeEvent = {
@@ -55,7 +65,9 @@ declare global {
     | "payoutMadeEvent"
     | "ajoGroupClosedEvent"
     | "refundClaimedEvent"
-    | "ajoGroupStartedEvent";
+    | "ajoGroupStartedEvent"
+    | "joinRequestRejectedEvent"
+    | "participantInWaitingRoomEvent";
 
   type OnchainEvent = {
     name: EventName;
@@ -66,7 +78,9 @@ declare global {
       | ParticipantJoinedEvent
       | PayoutMadeEvent
       | AjoGroupClosedEvent
-      | RefundClaimedEvent;
+      | RefundClaimedEvent
+      | ParticipantInWaitingRoomEvent
+      | JoinRequestRejectedEvent;
   };
 }
 

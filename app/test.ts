@@ -5,16 +5,12 @@ async function scanPastEvents() {
   console.log("🚀 Scanning past Koopa events...\n");
 
   let lastSig: string | undefined = undefined;
-  for (let i = 0; i < 3; i++) {
-    lastSig = await fetchPastEvents(lastSig);
-    if (!lastSig) break;
-  }
+  lastSig = await fetchPastEvents(lastSig);
 
-  console.log("✅ Done scanning.");
+  console.log("✅ Done scanning.", lastSig);
 }
 
 (async () => {
-  await testMail("emolasholawilson@gmail.com");
-  await testMail("Svdeeque11@gmail.com");
-  process.exit(0);
+  scanPastEvents();
+  // process.exit(0);
 })();

@@ -45,6 +45,7 @@ async function handleAjoGroupCreatedEvent(event: AjoGroupCreatedEvent) {
     payoutRound: 0,
     interval,
   });
+  // check db if data is there, with a 1 minute backoff
 }
 
 async function handleParticipantJoinedEvent(event: ParticipantJoinedEvent) {

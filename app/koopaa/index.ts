@@ -10,7 +10,7 @@ export { KoopaIDL };
 
 // The correct program ID
 export const KOOPAA_PROGRAM_ID = new PublicKey(
-  "33NAzyKNuayyqKNW6QMXbNT69CikAhCUhPbgwZn1LR3o"
+  "2ritrNbhimgFDysvHUgh1Cc5Xr5Z9qWmiumSH76WVzXh"
 );
 
 // This is a helper function to get the Basic Anchor program.
