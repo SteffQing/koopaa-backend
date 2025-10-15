@@ -46,7 +46,7 @@ export async function handleKoopaEvent(
 }
 
 function listenToKoopaEvents() {
-  console.log("🟢 Listening for Koopa events...\n");
+  console.log("🟢 Listening for Koopaa events...\n");
 
   connection.onLogs(
     KOOPAA_PROGRAM_ID,
@@ -68,7 +68,7 @@ function listenToKoopaEvents() {
             );
           }
         } catch (err) {
-          await redis.set("koopa:events:failed", JSON.stringify(err));
+          await redis.set("koopa:events:failed", JSON.stringify(rawData));
           console.log("Failed to decode event: ", err);
         }
       }

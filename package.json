@@ -25,6 +25,7 @@
   "dependencies": {
     "@coral-xyz/anchor": "^0.31.1",
     "@neondatabase/serverless": "^1.0.1",
+    "@prisma/client": "^6.17.1",
     "@react-email/components": "0.0.42",
     "@solana/spl-token": "^0.4.13",
     "@solana/web3.js": "^1.87.6",
@@ -40,6 +41,7 @@
     "@types/node": "^20.10.5",
     "@types/node-cron": "^3.0.11",
     "@types/react": "^19.1.8",
+    "prisma": "^6.17.1",
     "react-email": "4.0.16",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",

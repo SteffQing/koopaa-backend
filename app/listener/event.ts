@@ -1,6 +1,7 @@
 import sendEmail from "../emails";
 import payout from "../payout";
 import { redis } from "../utils/config";
+import prisma from "../utils/prisma";
 
 async function handleContributionMadeEvent(event: ContributionMadeEvent) {
   const { contributor, currentRound, groupName } = event;
@@ -46,6 +47,9 @@ async function handleAjoGroupCreatedEvent(event: AjoGroupCreatedEvent) {
     interval,
   });
   // check db if data is there, with a 1 minute backoff
+  // await prisma.group.create({
+  //   data: {},
+  // });
 }
 
 async function handleParticipantJoinedEvent(event: ParticipantJoinedEvent) {

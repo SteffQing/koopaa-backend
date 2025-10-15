@@ -14,7 +14,6 @@ const contributionMadeEvent: ContributionMadeEvent = {
 
 const ajoGroupCreatedEvent: AjoGroupCreatedEvent = {
   groupName: "MarketMakers",
-  securityDeposit: new BN(10000000),
   contributionAmount: new BN(5000000),
   numParticipants: 5,
   contributionInterval: 1,
@@ -30,6 +29,7 @@ const participantJoinedEvent: ParticipantJoinedEvent = {
   groupName: "MarketMakers",
   participant: samplePubkey,
   joinTimestamp: new BN(Date.now() / 1000),
+  adminInvited: true,
 };
 
 const payoutMadeEvent: PayoutMadeEvent = {
