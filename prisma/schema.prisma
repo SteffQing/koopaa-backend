@@ -28,6 +28,8 @@ model Group {
   admin        String
   participants User[]
   waiting_room String[]
+  started_at   DateTime?
+  closed_at    DateTime?
 }
 
 model Activity {

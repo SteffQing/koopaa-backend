@@ -1,5 +1,6 @@
 import sendEmail from "../emails";
 import payout from "../payout";
+import { findAjoGroupPDA, formatNumber } from "../utils";
 import { redis } from "../utils/config";
 import prisma from "../utils/prisma";
 
@@ -19,9 +20,7 @@ async function handleContributionMadeEvent(event: ContributionMadeEvent) {
   const [participantsRounds, groupData] = await Promise.all([
     Promise.all(
       participants.map(async (participant) => {
-        const round = await redis.get<number>(
-          `${groupKey}:participant:${participant}:round`
-        );
+        const round = await redis.get<number>(`${groupKey}:participant:${participant}:round`);
         return { participant, round: round ? Number(round) : 0 };
       })
     ),
@@ -30,11 +29,8 @@ async function handleContributionMadeEvent(event: ContributionMadeEvent) {
 
   if (!groupData) return;
 
-  const required_contributions_for_payout =
-    (groupData.payoutRound + 1) * groupData.interval;
-  const meets_requirement = participantsRounds.every(
-    (p) => p.round >= required_contributions_for_payout
-  );
+  const required_contributions_for_payout = (groupData.payoutRound + 1) * groupData.interval;
+  const meets_requirement = participantsRounds.every((p) => p.round >= required_contributions_for_payout);
 
   if (meets_requirement) await payout(groupName);
 }
@@ -46,10 +42,6 @@ async function handleAjoGroupCreatedEvent(event: AjoGroupCreatedEvent) {
     payoutRound: 0,
     interval,
   });
-  // check db if data is there, with a 1 minute backoff
-  // await prisma.group.create({
-  //   data: {},
-  // });
 }
 
 async function handleParticipantJoinedEvent(event: ParticipantJoinedEvent) {
@@ -84,6 +76,16 @@ async function handleAjoGroupClosedEvent(event: AjoGroupClosedEvent) {
   const { groupName } = event;
   const groupKey = `group:${groupName}`;
 
+  const [pda] = findAjoGroupPDA(groupName);
+  await prisma.group.update({
+    where: {
+      pda: pda.toBase58(),
+    },
+    data: {
+      closed_at: new Date(),
+    },
+  });
+
   const participants = await redis.smembers(`${groupKey}:participants`);
   await Promise.all(
     participants.map(async (participant) => {
@@ -99,8 +101,19 @@ async function handleAjoGroupClosedEvent(event: AjoGroupClosedEvent) {
 }
 
 async function handleAjoGroupStartedEvent(event: AjoGroupStartedEvent) {
-  const { groupName } = event;
+  const { groupName, startTimestamp } = event;
   const groupKey = `group:${groupName}`;
+
+  const [pda] = findAjoGroupPDA(groupName);
+  const startDate = new Date(formatNumber(startTimestamp, 0));
+  await prisma.group.update({
+    where: {
+      pda: pda.toBase58(),
+    },
+    data: {
+      started_at: startDate,
+    },
+  });
 
   const participants = await redis.smembers(`${groupKey}:participants`);
   await Promise.all(
